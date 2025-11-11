@@ -25,3 +25,4 @@ distribution = true
 [project.scripts]
 cli = "scripts:cli"
 problem = "scripts.add_problem:add_problem"
+tests = "scripts.tests:run_tests"

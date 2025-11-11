@@ -1,5 +1,4 @@
 from functools import cached_property
-import os
 import shutil
 import sys
 from datetime import datetime
@@ -157,7 +156,7 @@ class Problem:
         readme += f"**Tags:** {', '.join(self.tags)}\n\n"
         readme += "## Description\n"
         readme_link_only = readme
-        readme += self.content
+        readme += self.content.replace("<pre>", '<pre style="color:#ABB2BF">')
         readme_link_only += f"https://leetcode.com/problems/{self.slug}/"
 
         with open(self.dir / f"{description_file}", "w") as f:
@@ -184,14 +183,9 @@ class Problem:
                 )
 
     def init_rust(self) -> None:
-        os.makedirs(self.dir / "src", exist_ok=True)
-        os.makedirs(self.dir / "tests", exist_ok=True)
-
         DEF_RUST_FILE = "data/rust_src_template.rs"
-        DEF_RUST_TEST = "data/rust_test_template.rs"
 
-        shutil.copy(DEF_RUST_FILE, self.dir / "src/lib.rs")
-        shutil.copy(DEF_RUST_TEST, self.dir / "tests/test.rs")
+        shutil.copy(DEF_RUST_FILE, self.dir / "solution.rs")
 
         cargo_struct = {
             "package": {
@@ -201,7 +195,7 @@ class Problem:
             },
             "lib": {
                 "name": self.slug.replace("-", "_"),
-                "path": "src/lib.rs",
+                "path": "solution.rs",
             },
         }
         with open(self.dir / "Cargo.toml", "w") as f:
@@ -217,7 +211,6 @@ class Problem:
         cmake_content = "cmake_minimum_required(VERSION 3.10)\n"
 
         cmake_content += f"project({target})\n\n"
-        cmake_content += f"add_executable({target} solution.cpp)\n"
         cmake_content += "set(CMAKE_CXX_STANDARD 23)\n\n"
 
         cmake_content += f"add_executable({target} solution.cpp)\n"

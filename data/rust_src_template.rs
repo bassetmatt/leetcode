@@ -1,6 +1,16 @@
 #![allow(unused)]
-struct Solution;
+pub struct Solution;
 
 impl Solution {
-    // Solution here
+    pub fn bwa() {}
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn test_solution() {
+        let result = Solution::bwa();
+        assert_eq!(result, ());
+    }
 }
