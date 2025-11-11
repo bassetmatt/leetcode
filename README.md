@@ -2,6 +2,14 @@
 My personal repo with some leetcode problems that I solved.\
 The files uploaded should be fine regarding license issues with leetcode
 
+## Code organisation
+- `problems/`: Code for a given problem
+- `scripts/`: Utility code to setup environments for new problems, downloads the description
+- `data/`: Templates, icons
+
+## List of problems
+- 1: Two Sum
+
 ## License
 <sup>
 Licensed under either of <a href="LICENSE-APACHE">Apache License, Version

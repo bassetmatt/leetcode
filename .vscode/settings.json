@@ -1,0 +1,15 @@
+{
+    "files.associations": {
+        ".fantomasignore": "ignore",
+        "*.h": "c",
+        "*.ui": "xml",
+        "*.pyproject": "json",
+        "*.lock": "toml",
+        "*.hook": "properties",
+        "print": "cpp"
+    },
+    "python.defaultInterpreterPath": ".venv/bin/python",
+    "files.exclude": {
+        "problems/**/README.md": true
+    }
+}
