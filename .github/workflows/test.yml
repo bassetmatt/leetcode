@@ -1,0 +1,82 @@
+name: Test LeetCode Solutions
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: Test (Arch Linux)
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux:latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install dependencies (Arch Linux)
+        run: |
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm \
+          curl git base-devel
+
+      # Add back for python and C++ testing
+      # python python-pip \
+      # gcc cmake make \
+
+
+      # - name: Set up Python
+      #   run: |
+      #     pip install --upgrade pip
+
+      - name: Set up Rust
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+          source "$HOME/.cargo/env"
+          rustup default stable
+
+      # - name: Set up C++
+      #   run: |
+      #     pacman -S --noconfirm gcc cmake make
+
+      - name: Build and Test Rust
+        # run: |
+        #   source "$HOME/.cargo/env"
+        #   for problem in problems/*; do
+        #     if [ -f "$problem/Cargo.toml" ]; then
+        #       cd "$problem"
+        #       cargo test --release
+        #       cd ../..
+        #     fi
+        #   done
+        run: |
+          source "$HOME/.cargo/env"
+          cargo test --release --all
+
+      # - name: Build and Test C++
+      #   run: |
+      #     mkdir -p build && cd build
+      #     cmake ..
+      #     make
+      #     cd ..
+      #     for problem in problems/*; do
+      #       if [ -f "$problem/solution.cpp" ]; then
+      #         if [ -f "$problem/testcases_free.txt" ]; then
+      #           echo "Running free tests for $problem"
+      #           # Add your C++ test runner logic here
+      #           # Example: ./build/$problem/solution < $problem/testcases_free.txt
+      #         else
+      #           echo "No free test cases for $problem"
+      #         fi
+      #       fi
+      #     done
+
+      # - name: Test Python
+      #   run: |
+      #     for problem in problems/*; do
+      #       if [ -f "$problem/solution.py" ]; then
+      #         if [ -f "$problem/testcases_free.txt" ]; then
+      #           echo "Running free tests for $problem"
+      #           python "$problem/solution.py" < "$problem/testcases_free.txt"
+      #         else
+      #           echo "No free test cases for $problem"
+      #         fi
+      #       fi
+      #     done
