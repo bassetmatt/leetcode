@@ -10,6 +10,8 @@ import polars as pl
 from loguru import logger
 import toml
 
+from scripts import CSV_FILE, DEF_CPP_FILE, DEF_PY_FILE, DEF_RUST_FILE
+
 
 def rotation_fn(_msg: loguru.Message, file_opened: TextIO) -> bool:
     """Rotation function for logfiles.
@@ -120,8 +122,6 @@ class Problem:
         return Path(f"problems/{self.id:04d}-{self.slug}")
 
     def update_csv(self) -> None:
-        CSV_FILE = Path("data/problems.csv")
-
         if CSV_FILE.exists():
             data = pl.read_csv(CSV_FILE)
         else:
@@ -183,8 +183,6 @@ class Problem:
                 )
 
     def init_rust(self) -> None:
-        DEF_RUST_FILE = "data/rust_src_template.rs"
-
         shutil.copy(DEF_RUST_FILE, self.dir / "solution.rs")
 
         cargo_struct = {
@@ -202,8 +200,6 @@ class Problem:
             toml.dump(cargo_struct, f)
 
     def init_cpp(self) -> None:
-        DEF_CPP_FILE = "data/cpp_src_template.cpp"
-
         shutil.copy(DEF_CPP_FILE, self.dir / "solution.cpp")
         target = self.slug
         compiler_flags = "-Wall -Wextra -Wpedantic"
@@ -220,8 +216,6 @@ class Problem:
             f.write(cmake_content)
 
     def init_python(self) -> None:
-        DEF_PY_FILE = "data/python_src_template.py"
-
         shutil.copy(DEF_PY_FILE, self.dir / "solution.py")
 
     def generate_desktop_file(self) -> None:

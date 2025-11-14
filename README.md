@@ -8,7 +8,12 @@ The files uploaded should be fine regarding license issues with leetcode
 - `data/`: Templates, icons
 
 ## List of problems
-- 1: Two Sum
+
+| ID  | Name                             | Difficulty | Tags                   | Rust | C++ | Python |
+| --- | -------------------------------- | ---------- | ---------------------- | ---- | --- | ------ |
+| 1   | [Two Sum](problems/0001-two-sum) | 🟢 Easy     | 🗂️ Array, 🔑🗄️ Hash Table | 🦀    | 💻   |        |
+
+<!-- END OF LIST -->
 
 ## License
 <sup>
