@@ -1,0 +1,11 @@
+version = 1.0
+
+[format]
+input.values = { nums = "List[int]", target = "int" }
+input.settings = {}
+output.out = "List[int]"
+output.settings = { unordered = true }
+
+[[testcases]]
+input = { nums = [2, 7, 11, 15], target = 9 }
+output.out = [0, 1]

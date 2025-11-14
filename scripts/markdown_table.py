@@ -12,7 +12,7 @@ EMOJIS = {
     "Rust": "🦀",
 }
 TAGS_EMOJIS = {
-    "Array": "🗂️",
+    "Array": "🍡",
     "Hash Table": "🔑🗄️",
     "Sorting": "🔄📊",
     "String": "📜🔤",

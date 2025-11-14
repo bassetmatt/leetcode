@@ -11,7 +11,7 @@ The files uploaded should be fine regarding license issues with leetcode
 
 | ID  | Name                                         | Difficulty | Tags                                 | Rust | C++ | Python |
 | --- | -------------------------------------------- | ---------- | ------------------------------------ | ---- | --- | ------ |
-| 1   | [Two Sum](problems/0001-two-sum)             | 🟢 Easy     | 🗂️ Array, 🔑🗄️ Hash Table               | 🦀    | 💻   |        |
+| 1   | [Two Sum](problems/0001-two-sum)             | 🟢 Easy     | 🍡 Array, 🔑🗄️ Hash Table               | 🦀    | 💻   |        |
 | 242 | [Valid Anagram](problems/0242-valid-anagram) | 🟢 Easy     | 🔑🗄️ Hash Table, 🔄📊 Sorting, 📜🔤 String | 🦀    | 💻   | 🐍      |
 
 <!-- END OF LIST -->
