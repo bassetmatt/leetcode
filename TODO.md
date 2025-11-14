@@ -4,6 +4,7 @@
 - [ ] Create a testing framework for Python
 
 ## Mid-prio
+- [ ] Add logging for readme command
 - [x] Generate a table for the MD file
   - [x] Include columns for each language treated
 - [ ] Try to implement generic structure generation for test cases. See [here](#test-data-translation).
