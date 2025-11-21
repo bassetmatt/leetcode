@@ -91,6 +91,8 @@
     },
     "python.defaultInterpreterPath": ".venv/bin/python",
     "files.exclude": {
-        "problems/**/README.md": true
+        "problems/**/README.md": true,
+        "**/.directory": true,
+        // "**/test_*.py": true
     }
 }

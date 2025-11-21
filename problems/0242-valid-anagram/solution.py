@@ -1,10 +1,8 @@
 from collections import defaultdict
-from typing import Callable
 
 
 class Solution:
-    @staticmethod
-    def isAnagram(s: str, t: str) -> bool:
+    def isAnagram(self, s: str, t: str) -> bool:
         if len(s) != len(t):
             return False
         # Make it default to 0
@@ -16,16 +14,3 @@ class Solution:
             if count != 0:
                 return False
         return True
-
-
-if __name__ == "__main__":
-    Solution.__dict__
-    L = [
-        func
-        for func in dir(Solution)
-        if callable(getattr(Solution, func)) and not func.startswith("_")
-    ]
-    fn: Callable = Solution.__dict__[L[0]]
-    print(fn("s", "s"))
-    print(fn("anagram", "nagaram"))  # True
-    print(fn("rat", "car"))  # False

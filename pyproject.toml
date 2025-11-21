@@ -9,6 +9,7 @@ dependencies = [
     "polars>=1.35.2",
     "requests>=2.32.5",
     "toml>=0.10.2",
+    "pytest>=9.0.1",
 ]
 requires-python = ">=3.14"
 readme = "README.md"
@@ -27,3 +28,7 @@ cli = "scripts:cli"
 problem = "scripts.add_problem:add_problem"
 tests = "scripts.tests:run_tests"
 readme = "scripts.markdown_table:update_md"
+
+[tool.pytest]
+# python_files = ["solution.py"]
+python_functions = ["test_*"]
