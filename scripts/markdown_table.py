@@ -1,7 +1,7 @@
 from pathlib import Path
 import polars as pl
 
-from scripts import CSV_FILE, README_FILE
+from scripts._paths import CSV_FILE, README_FILE
 
 EMOJIS = {
     "Easy": "🟢",

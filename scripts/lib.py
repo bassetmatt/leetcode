@@ -10,7 +10,7 @@ import polars as pl
 from loguru import logger
 import toml
 
-from scripts import CSV_FILE, DEF_CPP_FILE, DEF_PY_FILE, DEF_RUST_FILE
+from scripts._paths import CSV_FILE, DEF_CPP_FILE, DEF_PY_FILE, DEF_RUST_FILE
 
 
 def rotation_fn(_msg: loguru.Message, file_opened: TextIO) -> bool:
@@ -115,6 +115,9 @@ class Problem:
             "name": self.name,
             "difficulty": self.difficulty,
             "tags": ";".join(self.tags),
+            "rust": "n",
+            "python": "n",
+            "cpp": "n",
         }
 
     @cached_property
@@ -157,7 +160,11 @@ class Problem:
         readme += "## Description\n"
         readme_link_only = readme
         readme += self.content.replace("<pre>", '<pre style="color:#ABB2BF">')
-        readme_link_only += f"https://leetcode.com/problems/{self.slug}/"
+        readme += "\n## Problem Link\n"
+
+        url = f"https://leetcode.com/problems/{self.slug}/"
+        readme += f"[{self.name}]({url})\n"
+        readme_link_only += f"[{self.name}]({url})\n"
 
         with open(self.dir / f"{description_file}", "w") as f:
             f.write(readme)
@@ -169,13 +176,13 @@ class Problem:
         N = len(self.languages)
         for i, lang in enumerate(self.languages):
             if lang == "rust":
-                logger.debug(f"[{i}/{N}] Initializing Rust files")
+                logger.debug(f"[{i + 1}/{N}] Initializing Rust files")
                 self.init_rust()
             elif lang == "cpp":
-                logger.debug(f"[{i}/{N}] Initializing C++ files")
+                logger.debug(f"[{i + 1}/{N}] Initializing C++ files")
                 self.init_cpp()
             elif lang == "python":
-                logger.debug(f"[{i}/{N}] Initializing Python files")
+                logger.debug(f"[{i + 1}/{N}] Initializing Python files")
                 self.init_python()
             else:
                 logger.warning(
