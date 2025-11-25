@@ -34,7 +34,7 @@ mod tests {
     use super::*;
     #[test]
     fn test_solution() {
-        let result = Solution::group_anagrams(vec![]);
-        assert_eq!(result, ());
+        let result = Solution::group_anagrams(vec!["a".to_string()]);
+        assert_eq!(result, vec![vec!["a".to_string()]]);
     }
 }
