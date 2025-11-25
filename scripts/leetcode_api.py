@@ -35,6 +35,6 @@ def fetch_problem(slug: str) -> Problem:
         logger.error("No connection")
         logger.exception(e)
         exit(1)
-    logger.info("... roblem data fetched successfully")
+    logger.info("... Problem data fetched successfully")
     problem = Problem.from_post(slug, data)
     return problem

@@ -56,7 +56,7 @@ def format_logger(*, log_file: Path = Path("logs") / "leetcode.log") -> None:
         log_file,
         format=format + f_name,
         enqueue=True,
-        level="DEBUG",
+        level="TRACE",
         rotation=rotation_fn,
     )
     logger.info(f"Launched program with command {' '.join(sys.argv)}")
