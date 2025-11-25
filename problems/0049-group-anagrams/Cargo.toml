@@ -1,0 +1,8 @@
+[package]
+name = "group-anagrams"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+name = "group_anagrams"
+path = "solution.rs"
