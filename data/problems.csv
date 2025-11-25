@@ -1,3 +1,4 @@
 id,slug,name,difficulty,tags,rust,python,cpp
 1,two-sum,Two Sum,Easy,Array;Hash Table,y,n,y
+217,contains-duplicate,Contains Duplicate,Easy,Array;Hash Table;Sorting,y,n,y
 242,valid-anagram,Valid Anagram,Easy,Hash Table;String;Sorting,y,y,y

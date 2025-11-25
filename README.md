@@ -9,10 +9,11 @@ The files uploaded should be fine regarding license issues with leetcode
 
 ## List of problems
 
-| ID  | Name                                         | Difficulty | Tags                                 | Rust | C++ | Python |
-| --- | -------------------------------------------- | ---------- | ------------------------------------ | ---- | --- | ------ |
-| 1   | [Two Sum](problems/0001-two-sum)             | 🟢 Easy     | 🍡 Array, 🔑🗄️ Hash Table               | 🦀    | 💻   |        |
-| 242 | [Valid Anagram](problems/0242-valid-anagram) | 🟢 Easy     | 🔑🗄️ Hash Table, 🔄📊 Sorting, 📜🔤 String | 🦀    | 💻   | 🐍      |
+| ID  | Name                                                   | Difficulty | Tags                                 | Rust | C++ | Python |
+| --- | ------------------------------------------------------ | ---------- | ------------------------------------ | ---- | --- | ------ |
+| 1   | [Two Sum](problems/0001-two-sum)                       | 🟢 Easy     | 🍡 Array, 🔑🗄️ Hash Table               | 🦀    | 💻   |        |
+| 217 | [Contains Duplicate](problems/0217-contains-duplicate) | 🟢 Easy     | 🍡 Array, 🔑🗄️ Hash Table, 🔄📊 Sorting   | 🦀    | 💻   |        |
+| 242 | [Valid Anagram](problems/0242-valid-anagram)           | 🟢 Easy     | 🔑🗄️ Hash Table, 🔄📊 Sorting, 📜🔤 String | 🦀    | 💻   | 🐍      |
 
 <!-- END OF LIST -->
 
