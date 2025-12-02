@@ -9,12 +9,13 @@ The files uploaded should be fine regarding license issues with leetcode
 
 ## List of problems
 
-| ID  | Name                                                   | Difficulty | Tags                                          | Rust | C++ | Python |
-| --- | ------------------------------------------------------ | ---------- | --------------------------------------------- | ---- | --- | ------ |
-| 1   | [Two Sum](problems/0001-two-sum)                       | 🟢 Easy     | 🍡 Array, 🔑🗄️ Hash Table                        | 🦀    | 💻   |        |
-| 49  | [Group Anagrams](problems/0049-group-anagrams)         | 🟠 Medium   | 🍡 Array, 🔑🗄️ Hash Table, 🔄📊 Sorting, 📜🔤 String | 🦀    | 💻   |        |
-| 217 | [Contains Duplicate](problems/0217-contains-duplicate) | 🟢 Easy     | 🍡 Array, 🔑🗄️ Hash Table, 🔄📊 Sorting            | 🦀    | 💻   |        |
-| 242 | [Valid Anagram](problems/0242-valid-anagram)           | 🟢 Easy     | 🔑🗄️ Hash Table, 🔄📊 Sorting, 📜🔤 String          | 🦀    | 💻   | 🐍      |
+| ID | Name | Difficulty | Tags | Rust | C++ | Python |
+|----|------|------------|------|------|-----|--------|
+| 1 | [Two Sum](problems/0001-two-sum) | 🟢 Easy| 🍡 Array, 🔑🗄️ Hash Table | 🦀 | 💻 | |
+| 49 | [Group Anagrams](problems/0049-group-anagrams) | 🟠 Medium| 🍡 Array, 🔑🗄️ Hash Table, 🔄📊 Sorting, 📜🔤 String | 🦀 | 💻 | |
+| 217 | [Contains Duplicate](problems/0217-contains-duplicate) | 🟢 Easy| 🍡 Array, 🔑🗄️ Hash Table, 🔄📊 Sorting | 🦀 | 💻 | |
+| 242 | [Valid Anagram](problems/0242-valid-anagram) | 🟢 Easy| 🔑🗄️ Hash Table, 🔄📊 Sorting, 📜🔤 String | 🦀 | 💻 | 🐍 |
+| 347 | [Top K Frequent Elements](problems/0347-top-k-frequent-elements) | 🟠 Medium| 🍡 Array, 🔑🗄️ Hash Table, 🔄📊 Sorting | 🦀 | | |
 
 <!-- END OF LIST -->
 

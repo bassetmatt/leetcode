@@ -238,10 +238,3 @@ class Problem:
         desktop_file_path = self.dir / ".directory"
         with open(desktop_file_path, "w") as f:
             f.write(file_content)
-
-
-# string-to-integer-atoi
-
-#         DESKTOP_TEMPLATE = """[Desktop Entry]
-# Icon=/home/matt/Programming/LeetCode/data/code-easy.svg
-# """

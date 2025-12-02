@@ -1,0 +1,8 @@
+[package]
+name = "top-k-frequent-elements"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+name = "top_k_frequent_elements"
+path = "solution.rs"

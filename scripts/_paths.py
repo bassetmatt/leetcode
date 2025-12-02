@@ -1,9 +1,9 @@
 from pathlib import Path
 
-
-CSV_FILE = Path("data/problems.csv")
-DEF_RUST_FILE = "data/rust_src_template.rs"
-DEF_CPP_FILE = "data/cpp_src_template.cpp"
-DEF_PY_FILE = "data/python_src_template.py"
+__DATA = Path("data")
+CSV_FILE = __DATA / "problems.csv"
+DEF_RUST_FILE = __DATA / "rust_src_template.rs"
+DEF_CPP_FILE = __DATA / "cpp_src_template.cpp"
+DEF_PY_FILE = __DATA / "python_src_template.py"
 
 README_FILE = Path("README.md")
