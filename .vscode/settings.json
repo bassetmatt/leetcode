@@ -94,5 +94,6 @@
         "problems/**/README.md": true,
         "**/.directory": true,
         // "**/test_*.py": true
-    }
+    },
+    "C_Cpp.errorSquiggles": "enabled"
 }

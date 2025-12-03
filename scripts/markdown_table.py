@@ -23,6 +23,7 @@ TAGS_EMOJIS = {
     "Heap (Priority Queue)": "🗃️⬆️",
     "Counting": "🧮📈🔎",
     "Divide and Conquer": "✂️🔁🏆",
+    "Stack": "🥞🍳",
 }
 
 
