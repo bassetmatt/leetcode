@@ -1,7 +1,9 @@
 from pathlib import Path
+from loguru import logger
 import polars as pl
 
 from scripts._paths import CSV_FILE, README_FILE
+from scripts.lib import format_logger
 
 EMOJIS = {
     "Easy": "🟢",
@@ -16,6 +18,11 @@ TAGS_EMOJIS = {
     "Hash Table": "🔑🗄️",
     "Sorting": "🔄📊",
     "String": "📜🔤",
+    "Quickselect": "🔄📉🔢",
+    "Bucket Sort": "🪣🔄📊",
+    "Heap (Priority Queue)": "🗃️⬆️",
+    "Counting": "🧮📈🔎",
+    "Divide and Conquer": "✂️🔁🏆",
 }
 
 
@@ -40,6 +47,8 @@ def insert_md_table(content: str) -> None:
 
 
 def generate_markdown_table(csv_path: Path = CSV_FILE) -> None:
+    no_emojis_tags = set()
+
     df = pl.read_csv(csv_path)
     table = ""
     head_names = ["ID", "Name", "Difficulty", "Tags", "Rust", "C++", "Python"]
@@ -63,6 +72,9 @@ def generate_markdown_table(csv_path: Path = CSV_FILE) -> None:
             tag_emoji = TAGS_EMOJIS.get(tag, "")
             if tag_emoji:
                 tag_text.append(f"{tag_emoji} {tag}")
+            else:
+                no_emojis_tags.add(tag)
+
         row_text += f"| {', '.join(tag_text)} "
 
         row_text += "| "
@@ -78,7 +90,10 @@ def generate_markdown_table(csv_path: Path = CSV_FILE) -> None:
         table += row_text
     table += "\n"
     insert_md_table(table)
+    for tag in no_emojis_tags:
+        logger.warning(f"Missing emoji for tag '{tag}'")
 
 
 def update_md() -> None:
+    format_logger()
     generate_markdown_table()

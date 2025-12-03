@@ -3,4 +3,4 @@ id,slug,name,difficulty,tags,rust,python,cpp
 49,group-anagrams,Group Anagrams,Medium,Array;Hash Table;String;Sorting,y,n,y
 217,contains-duplicate,Contains Duplicate,Easy,Array;Hash Table;Sorting,y,n,y
 242,valid-anagram,Valid Anagram,Easy,Hash Table;String;Sorting,y,y,y
-347,top-k-frequent-elements,Top K Frequent Elements,Medium,Array;Hash Table;Divide and Conquer;Sorting;Heap (Priority Queue);Bucket Sort;Counting;Quickselect,y,n,n
+347,top-k-frequent-elements,Top K Frequent Elements,Medium,Array;Hash Table;Divide and Conquer;Sorting;Heap (Priority Queue);Bucket Sort;Counting;Quickselect,y,n,y
