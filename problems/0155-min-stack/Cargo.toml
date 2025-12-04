@@ -1,0 +1,8 @@
+[package]
+name = "min-stack"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+name = "min_stack"
+path = "solution.rs"

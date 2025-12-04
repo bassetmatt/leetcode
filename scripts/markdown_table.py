@@ -24,6 +24,7 @@ TAGS_EMOJIS = {
     "Counting": "🧮📈🔎",
     "Divide and Conquer": "✂️🔁🏆",
     "Stack": "🥞🍳",
+    "Design": "🎨🛠️",
 }
 
 
