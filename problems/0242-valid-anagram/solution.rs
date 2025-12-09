@@ -33,16 +33,52 @@ impl Solution {
 
 #[cfg(test)]
 mod tests {
+    struct TestCase {
+        s: &'static str,
+        t: &'static str,
+        expected: bool,
+    }
+    use std::vec;
+
     use super::*;
     #[test]
     fn test_solution() {
-        let s = "anagram".to_string();
-        let t = "nagaram".to_string();
-        assert_eq!(Solution::is_anagram_sort(&s, &t), true);
-        assert_eq!(Solution::is_anagram_linear(&s, &t), true);
-        let s = "rat".to_string();
-        let t = "car".to_string();
-        assert_eq!(Solution::is_anagram_sort(&s, &t), false);
-        assert_eq!(Solution::is_anagram_linear(&s, &t), false);
+        let cases = vec![
+            TestCase {
+                s: "anagram",
+                t: "nagaram",
+                expected: true,
+            },
+            TestCase {
+                s: "rat",
+                t: "car",
+                expected: false,
+            },
+            TestCase {
+                s: "",
+                t: "",
+                expected: true,
+            },
+            TestCase {
+                s: "a",
+                t: "b",
+                expected: false,
+            },
+            TestCase {
+                s: "s",
+                t: "s",
+                expected: true,
+            },
+            TestCase {
+                s: "a",
+                t: "aaa",
+                expected: false,
+            },
+        ];
+        for case in cases {
+            println!("Testing s: {}, t: {}", case.s, case.t);
+            assert_eq!(Solution::is_anagram_sort(case.s, case.t), case.expected);
+            assert_eq!(Solution::is_anagram_linear(case.s, case.t), case.expected);
+        }
     }
 }

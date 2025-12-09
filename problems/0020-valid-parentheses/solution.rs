@@ -35,9 +35,52 @@ impl Solution {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    struct TestCase {
+        s: String,
+        expected: bool,
+    }
+
     #[test]
     fn test_solution() {
-        let result = Solution::is_valid("[]".to_string());
-        assert_eq!(result, true);
+        let cases = vec![
+            TestCase {
+                s: "()".to_string(),
+                expected: true,
+            },
+            TestCase {
+                s: "()[]{}".to_string(),
+                expected: true,
+            },
+            TestCase {
+                s: "(]".to_string(),
+                expected: false,
+            },
+            TestCase {
+                s: "([)]".to_string(),
+                expected: false,
+            },
+            TestCase {
+                s: "{[]}".to_string(),
+                expected: true,
+            },
+            TestCase {
+                s: "}".to_string(),
+                expected: false,
+            },
+            TestCase {
+                s: "((()))".to_string(),
+                expected: true,
+            },
+            TestCase {
+                s: "[".to_string(),
+                expected: false,
+            },
+        ];
+        for case in cases {
+            println!("Testing case with s: {}", case.s);
+            let result = Solution::is_valid(case.s.clone());
+            assert_eq!(result, case.expected);
+        }
     }
 }

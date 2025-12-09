@@ -18,11 +18,43 @@ impl Solution {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    struct TestCase {
+        nums: Vec<i32>,
+        target: i32,
+        expected: Vec<i32>,
+    }
+
     #[test]
     fn test_solution() {
-        let nums = vec![2, 7, 11, 15];
-        let target = 9;
-        let result = Solution::two_sum(nums, target);
-        assert_eq!(result, vec![0, 1]);
+        let cases = vec![
+            TestCase {
+                nums: vec![2, 7, 11, 15],
+                target: 9,
+                expected: vec![0, 1],
+            },
+            TestCase {
+                nums: vec![3, 2, 4],
+                target: 6,
+                expected: vec![1, 2],
+            },
+            TestCase {
+                nums: vec![3, 3],
+                target: 6,
+                expected: vec![0, 1],
+            },
+        ];
+        for case in cases {
+            println!(
+                "Testing case with nums: {:?}, target: {}",
+                case.nums, case.target
+            );
+            // Sorts the result to avoid order issues
+            let mut result = Solution::two_sum(case.nums.clone(), case.target);
+            result.sort();
+            let mut expected = case.expected.clone();
+            expected.sort();
+            assert_eq!(result, expected);
+        }
     }
 }
