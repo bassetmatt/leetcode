@@ -1,23 +1,31 @@
-version = 1.0
+version = 0.1
 
 [format]
-input.values = { s = "str", t = "str" }
-output.out = "bool"
+input = { s = "str", t = "str" }
+output = "bool"
 settings = { in = {}, out = {} }
 
 
 [[testcases]]
 input = { s = "anagram", t = "nagaram" }
-output.out = true
+output = true
+
+[[testcases]]
+input = { s = "rat", t = "car" }
+output = false
 
 [[testcases]]
 input = { s = "", t = "" }
-output.out = true
+output = true
 
 [[testcases]]
-input = { s = "aaa", t = "aa" }
-output.out = false
+input = { s = "a", t = "b" }
+output = false
 
 [[testcases]]
-input = { s = "aabaaba", t = "aaababa" }
-output.out = true
+input = { s = "s", t = "s" }
+output = true
+
+[[testcases]]
+input = { s = "a", t = "aaa" }
+output = false

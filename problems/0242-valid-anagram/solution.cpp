@@ -1,6 +1,8 @@
 #include <unordered_map>
 #include <string>
 #include <algorithm>
+#include <vector>
+#include <iostream>
 
 class Solution {
 public:
@@ -23,6 +25,50 @@ public:
     }
 };
 
+struct TestCase {
+    std::string s;
+    std::string t;
+    bool expected;
+};
+
+
+int test() {
+    Solution sol;
+    TestCase testcases[] = {
+        {"anagram", "nagaram", true},
+        {"rat", "car", false},
+        {"", "", true},
+        {"a", "b", false},
+        {"s", "s", true},
+        {"a", "aaa", false}
+    };
+
+    int error_found = 0;
+
+    for (const auto& test : testcases) {
+        bool result = sol.isAnagram(test.s, test.t);
+        if (result != test.expected) {
+            // Use printf or println in stderr
+            std::fprintf(stderr,
+                "Test failed for input s: \"%s\", t: \"%s\". Expected %s but got %s.\n",
+                test.s.c_str(), test.t.c_str(),
+                test.expected ? "true" : "false",
+                result ? "true" : "false");
+
+            ++error_found;
+        }
+    }
+
+    return error_found;
+}
+
 int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]) {
+    int errors = test();
+    if (errors == 0) {
+        std::cout << "All test cases passed!" << std::endl;
+    } else {
+        std::cerr << errors << " test case(s) failed." << std::endl;
+        return 1;
+    }
     return 0;
 }

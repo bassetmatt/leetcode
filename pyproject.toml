@@ -30,5 +30,6 @@ tests = "scripts.tests:run_tests"
 readme = "scripts.markdown_table:update_md"
 
 [tool.pytest]
-# python_files = ["solution.py"]
+python_files = ["solution.py", "test_*.py"]
 python_functions = ["test_*"]
+python_classes = ["There are no classes"]

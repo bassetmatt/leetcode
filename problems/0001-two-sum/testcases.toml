@@ -1,11 +1,19 @@
-version = 1.0
+version = 0.1
 
 [format]
-input.values = { nums = "List[int]", target = "int" }
-output.out = "List[int]"
+input = { nums = "List[int]", target = "int" }
+output = "List[int]"
 settings = { in = {}, out = { unordered = true } }
 
 
 [[testcases]]
 input = { nums = [2, 7, 11, 15], target = 9 }
-output.out = [0, 1]
+output = [0, 1]
+
+[[testcases]]
+input = { nums = [3, 2, 4], target = 6 }
+output = [1, 2]
+
+[[testcases]]
+input = { nums = [3, 3], target = 6 }
+output = [0, 1]

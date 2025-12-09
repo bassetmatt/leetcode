@@ -219,11 +219,19 @@ class Problem:
         cmake_content += f"add_executable({target} solution.cpp)\n"
         cmake_content += f"target_compile_options({target} PRIVATE {compiler_flags})\n"
 
+        cmake_content += "find_package(fmt)\n"
+        cmake_content += f"target_link_libraries({target} fmt::fmt)\n"
+
         with open(self.dir / "CMakeLists.txt", "w") as f:
             f.write(cmake_content)
 
     def init_python(self) -> None:
-        shutil.copy(DEF_PY_FILE, self.dir / "solution.py")
+        shutil.copy(DEF_PY_FILE, self.dir / f"solution-{self.id:04d}.py")
+        init_content = f'"""{self.name} Problem\n'
+        init_content += f"https://leetcode.com/problems/{self.slug}/\n"
+        init_content += '"""\n\n'
+        with open(self.dir / "__init__.py", "w") as f:
+            f.write(init_content)
 
     def generate_desktop_file(self) -> None:
         diff = self.difficulty.lower()
