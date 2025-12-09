@@ -3,7 +3,8 @@
 #include <algorithm>
 #include <print>
 #include <format>
-#include <fmt/base.h>
+#include <fmt/core.h>
+#include <fmt/ranges.h>
 
 class Solution {
 public:
@@ -42,10 +43,10 @@ int test() {
 
             fmt::print(stderr,
                 "Test failed for input nums: {}, target: {}. Expected output: {} but got: {}\n",
-                test_case.nums,
+                fmt::join(test_case.nums, ", "),
                 test_case.target,
-                test_case.out,
-                result
+                fmt::join(test_case.out, ", "),
+                fmt::join(result, ", ")
             );
             ++error_found;
         }

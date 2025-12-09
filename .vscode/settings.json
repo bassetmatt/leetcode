@@ -1,4 +1,19 @@
 {
+    "python.defaultInterpreterPath": ".venv/bin/python",
+    "files.exclude": {
+        "problems/**/README.md": true,
+        "**/.directory": true,
+        "**/__pycache__": true,
+        "problems/**/__init__.py": true,
+        ".pytest_cache": true,
+        "build": true,
+        ".pdm-python": true,
+        "LICENSE*": true,
+        "Cargo.lock": true,
+        // "**/test_*.py": true
+    },
+    "C_Cpp.errorSquiggles": "enabled",
+    // VSCode or C++ just being crazy with file associations, idk who to blame
     "files.associations": {
         ".fantomasignore": "ignore",
         "*.h": "c",
@@ -89,11 +104,4 @@
         "valarray": "cpp",
         "variant": "cpp"
     },
-    "python.defaultInterpreterPath": ".venv/bin/python",
-    "files.exclude": {
-        "problems/**/README.md": true,
-        "**/.directory": true,
-        // "**/test_*.py": true
-    },
-    "C_Cpp.errorSquiggles": "enabled"
 }

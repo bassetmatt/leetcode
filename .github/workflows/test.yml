@@ -14,69 +14,47 @@ jobs:
       - name: Install dependencies (Arch Linux)
         run: |
           pacman -Syu --noconfirm
-          pacman -S --noconfirm \
-          curl git base-devel
-
-      # Add back for python and C++ testing
-      # python python-pip \
-      # gcc cmake make \
+          pacman -S --noconfirm curl git base-devel
 
 
-      # - name: Set up Python
-      #   run: |
-      #     pip install --upgrade pip
+      - name: Set up Python
+        run: |
+          pacman -S --noconfirm python python-pip python-pipx
+          pipx ensurepath
+          pipx install pdm
+          pipx install uv
+          pdm config use_uv true
+          pdm install
+
 
       - name: Set up Rust
         run: |
-          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-          source "$HOME/.cargo/env"
+          pacman -S --noconfirm rustup
           rustup default stable
 
-      # - name: Set up C++
-      #   run: |
-      #     pacman -S --noconfirm gcc cmake make
-
-      - name: Build and Test Rust
-        # run: |
-        #   source "$HOME/.cargo/env"
-        #   for problem in problems/*; do
-        #     if [ -f "$problem/Cargo.toml" ]; then
-        #       cd "$problem"
-        #       cargo test --release
-        #       cd ../..
-        #     fi
-        #   done
+      - name: Set up C++
         run: |
-          source "$HOME/.cargo/env"
+          pacman -S --noconfirm gcc cmake make fmt
+
+      - name: Build Rust
+        run: |
+          cargo build --release --all
+
+      - name: Build C++
+        run: |
+          cmake -S . -B build
+          cmake --build build
+
+      - name: Test Rust
+        run: |
           cargo test --release --all
 
-      # - name: Build and Test C++
-      #   run: |
-      #     mkdir -p build && cd build
-      #     cmake ..
-      #     make
-      #     cd ..
-      #     for problem in problems/*; do
-      #       if [ -f "$problem/solution.cpp" ]; then
-      #         if [ -f "$problem/testcases_free.txt" ]; then
-      #           echo "Running free tests for $problem"
-      #           # Add your C++ test runner logic here
-      #           # Example: ./build/$problem/solution < $problem/testcases_free.txt
-      #         else
-      #           echo "No free test cases for $problem"
-      #         fi
-      #       fi
-      #     done
+      - name: Test C++
+        run: |
+          eval $(pdm venv activate)
+          pdm run tests-cpp
 
-      # - name: Test Python
-      #   run: |
-      #     for problem in problems/*; do
-      #       if [ -f "$problem/solution.py" ]; then
-      #         if [ -f "$problem/testcases_free.txt" ]; then
-      #           echo "Running free tests for $problem"
-      #           python "$problem/solution.py" < "$problem/testcases_free.txt"
-      #         else
-      #           echo "No free test cases for $problem"
-      #         fi
-      #       fi
-      #     done
+      - name: Test Python
+        run: |
+          eval $(pdm venv activate)
+          pytest

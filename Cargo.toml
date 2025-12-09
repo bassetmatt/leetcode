@@ -1,3 +1,5 @@
 [workspace]
 resolver = "2"
 members = ["problems/*"]
+# Exclude the generated __pycache__ directories
+exclude = ["problems/__pycache__", "problems/*/__pycache__"]

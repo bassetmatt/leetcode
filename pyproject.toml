@@ -27,6 +27,7 @@ distribution = true
 cli = "scripts:cli"
 problem = "scripts.add_problem:add_problem"
 tests = "scripts.tests:run_tests"
+tests-cpp = "scripts.tests:cpp_tests"
 readme = "scripts.markdown_table:update_md"
 
 [tool.pytest]
