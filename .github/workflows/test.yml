@@ -19,7 +19,7 @@ jobs:
 
       - name: Set up Python
         run: |
-          pacman -S --noconfirm python python-pip uv pdm
+          pacman -S --noconfirm python python-pip uv python-pdm
           pdm config use_uv true
           pdm install
 
