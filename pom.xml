@@ -1,0 +1,73 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.leetcode</groupId>
+    <artifactId>leetcode-solutions</artifactId>
+    <version>1.0</version>
+
+    <properties>
+        <!-- Avoids a warning and ensures the code isn't platform dependant -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- Use JDK21-->
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+    </properties>
+    <dependencies>
+        <dependency>
+            <!-- JUnit 5 -->
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.9.2</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Maven compiler plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.14.1</version>
+                <configuration>
+                    <source>21</source>
+                    <target>21</target>
+                    <!-- Explicitly exclude the data/ directory -->
+                    <excludes>
+                        <exclude>data/**</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
+            <!-- Maven Surefire Plugin (for running tests) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.4</version>
+            </plugin>
+        </plugins>
+
+        <sourceDirectory>problems</sourceDirectory>
+        <testSourceDirectory>problems</testSourceDirectory>
+        <resources>
+            <resource>
+                <directory>problems</directory>
+                <includes>
+                    <include>**/*.java</include>
+                </includes>
+            </resource>
+        </resources>
+        <testResources>
+            <testResource>
+                <directory>problems</directory>
+                <includes>
+                    <!-- Include all .java files with combined solution/test files -->
+                    <include>**/*.java</include>
+                </includes>
+            </testResource>
+        </testResources>
+
+
+    </build>
+
+
+</project>

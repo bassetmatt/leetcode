@@ -38,6 +38,10 @@ jobs:
         run: |
           pacman -S --noconfirm gcc cmake make fmt
 
+      - name: Set up Java
+        run: |
+          pacman -S --noconfirm jdk21-openjdk maven
+
       - name: Build Rust
         run: |
           cargo build --release --all

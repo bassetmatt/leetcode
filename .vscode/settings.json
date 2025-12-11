@@ -104,4 +104,5 @@
         "valarray": "cpp",
         "variant": "cpp"
     },
+    "java.configuration.updateBuildConfiguration": "interactive",
 }
