@@ -43,6 +43,9 @@ class SolutionTest {
             new TestCase(new int[] {3, 3}, 6, new int[] {0, 1}),
         };
         for (TestCase testCase : testCases) {
+            System.err.println("nums: " + Arrays.toString(testCase.nums));
+            System.err.println("target: " + testCase.target);
+            System.err.println("expected: " + Arrays.toString(testCase.expected));
             int[] result = solution.twoSum(testCase.nums, testCase.target);
             Arrays.sort(result);
             Arrays.sort(testCase.expected);
