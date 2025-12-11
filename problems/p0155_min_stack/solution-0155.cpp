@@ -47,6 +47,6 @@ public:
  */
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]) {
-    fmt::print("No test for this problem\n");
+    fmt::println("No test for this problem");
     return 0;
 }

@@ -137,17 +137,17 @@ class SolutionTest {
             new TestCase(new int[]{1}, 1, new int[]{1}),
             new TestCase(new int[]{4, 1, -1, 2, -1, 2, 3}, 2, new int[]{-1, 2}),};
         for (TestCase testCase : testCases) {
-            System.err.println("Input: " + java.util.Arrays.toString(testCase.nums) + " k: " + testCase.k);
-            System.err.println("Expected: " + java.util.Arrays.toString(testCase.expected));
+            System.err.println("Input: " + Arrays.toString(testCase.nums) + " k: " + testCase.k);
+            System.err.println("Expected: " + Arrays.toString(testCase.expected));
             int[] result = solution.topKFrequent(testCase.nums, testCase.k);
-            System.err.println("Result: " + java.util.Arrays.toString(result));
+            System.err.println("Result: " + Arrays.toString(result));
 
             Arrays.sort(result);
             Arrays.sort(testCase.expected);
             assertArrayEquals(testCase.expected, result);
 
             int[] resultQS = solution.topKFrequentQuickSelect(testCase.nums, testCase.k);
-            System.err.println("Result (QS): " + java.util.Arrays.toString(resultQS));
+            System.err.println("Result (QS): " + Arrays.toString(resultQS));
             Arrays.sort(resultQS);
             assertArrayEquals(testCase.expected, resultQS);
         }

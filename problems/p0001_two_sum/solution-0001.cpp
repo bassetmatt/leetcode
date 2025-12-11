@@ -39,8 +39,8 @@ int test() {
         std::sort(test_case.out.begin(), test_case.out.end());
         if (result != test_case.out) {
 
-            fmt::print(stderr,
-                "Test failed for input nums: {}, target: {}. Expected output: {} but got: {}\n",
+            fmt::println(stderr,
+                "Test failed for input nums: {}, target: {}. Expected output: {} but got: {}",
                 fmt::join(test_case.nums, ", "),
                 test_case.target,
                 fmt::join(test_case.out, ", "),
@@ -55,9 +55,9 @@ int test() {
 int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]) {
     int errors = test();
     if (errors == 0) {
-        fmt::print(stderr, "All test cases passed!\n");
+        fmt::println(stderr, "All test cases passed!");
     } else {
-        fmt::print(stderr, "{} test case(s) failed.\n", errors);
+        fmt::println(stderr, "{} test case(s) failed.", errors);
         return 1;
     }
     return 0;

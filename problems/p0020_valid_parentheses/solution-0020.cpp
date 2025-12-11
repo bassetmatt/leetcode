@@ -54,8 +54,8 @@ int test() {
     for (auto& test_case : test_cases) {
         bool result = solution.isValid(test_case.s);
         if (result != test_case.expected) {
-            fmt::print(stderr,
-                "Test failed for input s: {}. Expected output: {} but got: {}\n",
+            fmt::println(stderr,
+                "Test failed for input s: {}. Expected output: {} but got: {}",
                 test_case.s,
                 test_case.expected,
                 result
@@ -69,9 +69,9 @@ int test() {
 int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]) {
     int errors = test();
     if (errors == 0) {
-        fmt::print(stderr, "All test cases passed!\n");
+        fmt::println(stderr, "All test cases passed!");
     } else {
-        fmt::print(stderr, "{} test case(s) failed.\n", errors);
+        fmt::println(stderr, "{} test case(s) failed.", errors);
         return 1;
     }
     return 0;

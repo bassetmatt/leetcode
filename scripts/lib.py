@@ -240,7 +240,9 @@ class Problem:
         cmake_content += "set(CMAKE_CXX_STANDARD 23)\n\n"
 
         cmake_content += f"add_executable({target} {filename})\n"
-        cmake_content += f"target_compile_options({target} PRIVATE {compiler_flags})\n"
+        cmake_content += (
+            f"target_compile_options({target} PRIVATE {compiler_flags})\n\n"
+        )
 
         cmake_content += "find_package(fmt)\n"
         cmake_content += f"target_link_libraries({target} fmt::fmt)\n"
@@ -261,10 +263,11 @@ class Problem:
         filename = f"solution-{self.id4}.java"
         shutil.copy(DEF_JAVA_FILE, self.dir / filename)
 
-        package_line = f"p{self.id4}_{self.slug_underscore};\n\n"
-        with open(self.dir / filename, "rw") as f:
+        package_line = f"package p{self.id4}_{self.slug_underscore};\n\n"
+        with open(self.dir / filename, "r+") as f:
             content = f.read()
             content = package_line + content
+            f.seek(0)
             f.write(content)
 
     def init_testcases_file(self) -> None:
