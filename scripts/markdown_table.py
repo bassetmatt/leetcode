@@ -30,6 +30,8 @@ TAGS_EMOJIS = {
     "Divide and Conquer": "✂️🔁🏆",
     "Stack": "🥞🍳",
     "Design": "🎨🛠️",
+    "Two Pointers": "👆⬅️👈",
+    "Math": "➗➕",
 }
 
 

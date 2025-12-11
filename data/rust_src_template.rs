@@ -8,9 +8,17 @@ impl Solution {
 #[cfg(test)]
 mod tests {
     use super::*;
+    struct TestCase {
+        expected: (),
+    }
+
     #[test]
     fn test_solution() {
-        let result = Solution::bwa();
-        assert_eq!(result, ());
+        let cases = vec![TestCase {}];
+        for case in cases {
+            println!("Checking this case!");
+            let result = Solution::bwa();
+            assert_eq!(result, case.expected);
+        }
     }
 }

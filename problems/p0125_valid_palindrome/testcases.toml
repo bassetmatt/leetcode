@@ -1,0 +1,26 @@
+version = "0.1"
+
+[format]
+input = { s = "str" }
+output = "bool"
+settings = { in = {}, out = {} }
+
+[[testcases]]
+input = { s = "A man, a plan, a canal: Panama" }
+output = true
+
+[[testcases]]
+input = { s = "Race a car" }
+output = false
+
+[[testcases]]
+input = { s = "1A" }
+output = false
+
+[[testcases]]
+input = { s = " " }
+output = true
+
+[[testcases]]
+input = { s = "" }
+output = true

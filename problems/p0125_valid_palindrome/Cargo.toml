@@ -1,0 +1,8 @@
+[package]
+name = "valid-palindrome"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+name = "valid_palindrome"
+path = "solution-0125.rs"

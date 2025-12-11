@@ -274,10 +274,11 @@ class Problem:
         file_struct = {
             "version": "0.1",
             "format": {
-                "input": {},
+                "input": "",
                 "output": "",
-                "settings": {"in": {}, "out": {}},
+                "settings": {"in": "", "out": ""},
             },
+            "testcases": [{}],
         }
         self.testcases_file = self.dir / "testcases.toml"
         with open(self.testcases_file, "w") as f:

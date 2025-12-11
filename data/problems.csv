@@ -2,6 +2,7 @@ id,slug,name,difficulty,tags,rust,python,cpp,java
 1,two-sum,Two Sum,Easy,Array;Hash Table,y,n,y,y
 20,valid-parentheses,Valid Parentheses,Easy,String;Stack,y,y,y,y
 49,group-anagrams,Group Anagrams,Medium,Array;Hash Table;String;Sorting,y,n,y,n
+125,valid-palindrome,Valid Palindrome,Easy,Two Pointers;String,y,y,y,y
 150,evaluate-reverse-polish-notation,Evaluate Reverse Polish Notation,Medium,Array;Math;Stack,y,y,y,y
 155,min-stack,Min Stack,Medium,Stack;Design,y,n,y,n
 217,contains-duplicate,Contains Duplicate,Easy,Array;Hash Table;Sorting,y,n,y,n
