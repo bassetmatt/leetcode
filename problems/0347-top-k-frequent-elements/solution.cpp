@@ -4,8 +4,9 @@
 #include <chrono>
 #include <algorithm>
 #include <random>
-#include <iostream>
 #include <cassert>
+#include <fmt/core.h>
+#include <fmt/ranges.h>
 
 class Solution {
 private:
@@ -74,9 +75,46 @@ public:
     }
 };
 
+struct TestCase {
+    std::vector<int> nums;
+    int k;
+    std::vector<int> expected;
+};
+
+int test() {
+    Solution solution;
+    TestCase test_cases[] = {
+        { {1,1,1,2,2,3}, 2, {1,2} },
+        { {1}, 1, {1} },
+        { {4,4,4,6,6,6,6,7,7,8}, 3, {6,4,7} },
+        { {4,1,-1,2,-1,2,3}, 2, {-1,2} }
+    };
+    int error_found = 0;
+    for (auto& test_case : test_cases) {
+        std::vector<int> result = solution.topKFrequent(test_case.nums, test_case.k);
+        std::sort(result.begin(), result.end());
+        std::sort(test_case.expected.begin(), test_case.expected.end());
+        if (result != test_case.expected) {
+            fmt::print(stderr,
+                "Test failed for input nums: {}, k: {}. Expected output: {} but got: {}\n",
+                fmt::join(test_case.nums, ", "),
+                test_case.k,
+                fmt::join(test_case.expected, ", "),
+                fmt::join(result, ", ")
+            );
+            ++error_found;
+        }
+    }
+    return error_found;
+}
+
 int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]) {
-    Solution s = Solution();
-    std::vector<int> v = { 1, 2, 3, 1, 2, 1 };
-    s.topKFrequent(v, 1);
+    int errors = test();
+    if (errors == 0) {
+        fmt::print(stderr, "All test cases passed!\n");
+    } else {
+        fmt::print(stderr, "{} test case(s) failed.\n", errors);
+        return 1;
+    }
     return 0;
 }

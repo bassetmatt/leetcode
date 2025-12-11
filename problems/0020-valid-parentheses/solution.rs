@@ -65,6 +65,10 @@ mod tests {
                 expected: true,
             },
             TestCase {
+                s: "".to_string(),
+                expected: true,
+            },
+            TestCase {
                 s: "}".to_string(),
                 expected: false,
             },

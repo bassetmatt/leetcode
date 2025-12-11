@@ -125,12 +125,45 @@ impl Solution {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    struct TestCase {
+        nums: Vec<i32>,
+        k: i32,
+        expected: Vec<i32>,
+    }
+
     #[test]
     fn test_solution() {
-        let result = Solution::top_k_frequent(vec![1, 2, 3, 1, 2, 1], 1);
-        assert_eq!(result, vec![1]);
+        let cases = vec![
+            TestCase {
+                nums: vec![1, 1, 1, 2, 2, 3],
+                k: 2,
+                expected: vec![1, 2],
+            },
+            TestCase {
+                nums: vec![1],
+                k: 1,
+                expected: vec![1],
+            },
+            TestCase {
+                nums: vec![4, 4, 4, 6, 6, 6, 6, 7, 7, 8],
+                k: 3,
+                expected: vec![6, 4, 7],
+            },
+            TestCase {
+                nums: vec![4, 1, -1, 2, -1, 2, 3],
+                k: 2,
+                expected: vec![-1, 2],
+            },
+        ];
 
-        let result = Solution::top_k_frequent_partition(vec![1, 2, 3, 1, 2, 1], 1);
-        assert_eq!(result, vec![1]);
+        for case in cases {
+            println!("Testing case with nums: {:?}, k: {}", case.nums, case.k);
+            let mut result = Solution::top_k_frequent_partition(case.nums.clone(), case.k);
+            result.sort_unstable();
+            let mut expected = case.expected.clone();
+            expected.sort_unstable();
+            assert_eq!(result, expected);
+        }
     }
 }

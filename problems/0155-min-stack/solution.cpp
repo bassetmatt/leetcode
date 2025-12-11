@@ -1,4 +1,5 @@
 #include <vector>
+#include <fmt/base.h>
 
 struct StackNode {
     int value;
@@ -46,5 +47,6 @@ public:
  */
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]) {
+    fmt::print("No test for this problem\n");
     return 0;
 }

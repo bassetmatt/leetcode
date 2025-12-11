@@ -1,0 +1,18 @@
+version = 0.1
+
+[format]
+input = { strs = "list[str]" }
+output = "list[list[str]]"
+settings = { in = {}, out = { unordered = true } }
+
+[[testcases]]
+input = { strs = ["eat", "tea", "tan", "ate", "nat", "bat"] }
+output = [["bat"], ["nat", "tan"], ["ate", "eat", "tea"]]
+
+[[testcases]]
+input = { strs = [""] }
+output = [[""]]
+
+[[testcases]]
+input = { strs = ["a"] }
+output = [["a"]]

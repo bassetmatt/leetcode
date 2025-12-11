@@ -2,7 +2,9 @@
 #include <functional>
 #include <string>
 #include <vector>
-
+#include <algorithm>
+#include <fmt/core.h>
+#include <fmt/ranges.h>
 
 namespace std {
     // AI-generated hasher for formula
@@ -44,6 +46,50 @@ public:
     }
 };
 
+struct TestCase {
+    std::vector<std::string> strs;
+    std::vector<std::vector<std::string>> out;
+};
+
+int test() {
+    Solution solution;
+    TestCase test_cases[] = {
+        { {"eat","tea","tan","ate","nat","bat"}, { {"bat"}, {"nat","tan"}, {"ate","eat","tea"} } },
+        { {""}, { {""} } },
+        { {"a"}, { {"a"} } }
+    };
+    int error_found = 0;
+    for (auto& test_case : test_cases) {
+        // Sorting
+        std::vector<std::vector<std::string>> result = solution.groupAnagrams(test_case.strs);
+        for (auto& group : result) {
+            std::sort(group.begin(), group.end());
+        }
+        std::sort(result.begin(), result.end());
+        for (auto& group : test_case.out) {
+            std::sort(group.begin(), group.end());
+        }
+        std::sort(test_case.out.begin(), test_case.out.end());
+        if (result != test_case.out) {
+            fmt::print(stderr,
+                "Test failed for input strs: {}. Expected output: {} but got: {}\n",
+                test_case.strs,
+                fmt::join(test_case.out, " | "),
+                fmt::join(result, " | ")
+            );
+            ++error_found;
+        }
+    }
+    return error_found;
+}
+
 int main([[maybe_unused]] int argc, [[maybe_unused]] char* argv[]) {
+    int errors = test();
+    if (errors == 0) {
+        fmt::print(stderr, "All test cases passed!\n");
+    } else {
+        fmt::print(stderr, "{} test case(s) failed.\n", errors);
+        return 1;
+    }
     return 0;
 }

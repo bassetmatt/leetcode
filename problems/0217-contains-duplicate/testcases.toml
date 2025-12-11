@@ -1,0 +1,26 @@
+version = 0.1
+
+[format]
+input = { nums = "list[int]" }
+output = "bool"
+settings = { in = {}, out = {} }
+
+[[testcases]]
+input = { nums = [1, 2, 3, 1] }
+output = true
+
+[[testcases]]
+input = { nums = [1, 2, 3, 4] }
+output = false
+
+[[testcases]]
+input = { nums = [1, 1, 1, 3, 3, 4, 3, 2, 4, 2] }
+output = true
+
+[[testcases]]
+input = { nums = [] }
+output = false
+
+[[testcases]]
+input = { nums = [1] }
+output = false

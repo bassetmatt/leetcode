@@ -5,7 +5,7 @@
 groups = ["default"]
 strategy = []
 lock_version = "4.5.0"
-content_hash = "sha256:db8bdd55690a0abe667bb9ad91ec4d501f531bfe59f1eae5e1213bb2a5157c5c"
+content_hash = "sha256:f3313fdf44736b78b9a82e62bc2a4943ac6e621c98ed75ba06d3bf349947fda3"
 
 [[metadata.targets]]
 requires_python = ">=3.14"
@@ -116,28 +116,28 @@ files = [
 
 [[package]]
 name = "polars"
-version = "1.36.0"
+version = "1.36.1"
 summary = ""
 dependencies = [
     "polars-runtime-32",
 ]
 files = [
-    {file = "polars-1.36.0-py3-none-any.whl", hash = "sha256:32d6f0a033420122874fff8f3d7cb2c0d758624d4def8e1ff2023b061c2ad70e"},
-    {file = "polars-1.36.0.tar.gz", hash = "sha256:68af01d0c2dd2a4d95a1ddcd9d34d34587b77222434b824d3827282c0ac39941"},
+    {file = "polars-1.36.1-py3-none-any.whl", hash = "sha256:853c1bbb237add6a5f6d133c15094a9b727d66dd6a4eb91dbb07cdb056b2b8ef"},
+    {file = "polars-1.36.1.tar.gz", hash = "sha256:12c7616a2305559144711ab73eaa18814f7aa898c522e7645014b68f1432d54c"},
 ]
 
 [[package]]
 name = "polars-runtime-32"
-version = "1.36.0"
+version = "1.36.1"
 summary = ""
 files = [
-    {file = "polars_runtime_32-1.36.0-cp39-abi3-macosx_10_12_x86_64.whl", hash = "sha256:6060d6ca990ee76d7f56aa5377c323e842b2c5f2a3eb98422670e393908a3569"},
-    {file = "polars_runtime_32-1.36.0-cp39-abi3-macosx_11_0_arm64.whl", hash = "sha256:ab2f15b9de1b2ea78d421703b829a9ffb0b65889a4e6e1dec75c785cebef45f9"},
-    {file = "polars_runtime_32-1.36.0-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:be0aedf1e2c37b2463923f356d688459843e9436fc47e55fa281ce474ddefacc"},
-    {file = "polars_runtime_32-1.36.0-cp39-abi3-manylinux_2_24_aarch64.whl", hash = "sha256:2cf5dee05322394fbff6b1e66e9f2653abee1c067a94a3ac5bd1ea389df28b40"},
-    {file = "polars_runtime_32-1.36.0-cp39-abi3-win_amd64.whl", hash = "sha256:cf2be8e2fe2a89e8985845cf25a67e233211c7b6a29256b647df6a261b987374"},
-    {file = "polars_runtime_32-1.36.0-cp39-abi3-win_arm64.whl", hash = "sha256:b21cb377c86fe5d0b4de6010dfc3f62c65c4b3b34dcbca77cd1a47548f0f1cba"},
-    {file = "polars_runtime_32-1.36.0.tar.gz", hash = "sha256:29d3b3282f3c6ca54b147053d8c0da9c7ae23a7cd80c08ecbefa4f1c266310d3"},
+    {file = "polars_runtime_32-1.36.1-cp39-abi3-macosx_10_12_x86_64.whl", hash = "sha256:327b621ca82594f277751f7e23d4b939ebd1be18d54b4cdf7a2f8406cecc18b2"},
+    {file = "polars_runtime_32-1.36.1-cp39-abi3-macosx_11_0_arm64.whl", hash = "sha256:ab0d1f23084afee2b97de8c37aa3e02ec3569749ae39571bd89e7a8b11ae9e83"},
+    {file = "polars_runtime_32-1.36.1-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:899b9ad2e47ceb31eb157f27a09dbc2047efbf4969a923a6b1ba7f0412c3e64c"},
+    {file = "polars_runtime_32-1.36.1-cp39-abi3-manylinux_2_24_aarch64.whl", hash = "sha256:d9d077bb9df711bc635a86540df48242bb91975b353e53ef261c6fae6cb0948f"},
+    {file = "polars_runtime_32-1.36.1-cp39-abi3-win_amd64.whl", hash = "sha256:cc17101f28c9a169ff8b5b8d4977a3683cd403621841623825525f440b564cf0"},
+    {file = "polars_runtime_32-1.36.1-cp39-abi3-win_arm64.whl", hash = "sha256:809e73857be71250141225ddd5d2b30c97e6340aeaa0d445f930e01bef6888dc"},
+    {file = "polars_runtime_32-1.36.1.tar.gz", hash = "sha256:201c2cfd80ceb5d5cd7b63085b5fd08d6ae6554f922bcb941035e39638528a09"},
 ]
 
 [[package]]

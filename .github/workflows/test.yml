@@ -18,6 +18,7 @@ jobs:
 
 
       - name: Set up Python
+        # Installing pdm and uv via pipx because otherwise it just breaks ?
         run: |
           pacman -S --noconfirm python python-pip python-pipx
           pipx ensurepath
@@ -51,12 +52,14 @@ jobs:
           cargo test --release --all
 
       - name: Test C++
+        # Idk why but I need to re source bashrc to have pdm in path
         run: |
           source ~/.bashrc
           eval $(pdm venv activate)
           pdm run tests-cpp
 
       - name: Test Python
+        # Idk why but I need to re source bashrc to have pdm in path
         run: |
           source ~/.bashrc
           eval $(pdm venv activate)

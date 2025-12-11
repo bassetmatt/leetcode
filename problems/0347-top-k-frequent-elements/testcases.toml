@@ -1,0 +1,22 @@
+version = 0.1
+
+[format]
+input = { nums = "list[int]", k = "int" }
+output = "list[int]"
+settings = { in = {}, out = { unordered = true } }
+
+[[testcases]]
+input = { nums = [1, 1, 1, 2, 2, 3], k = 2 }
+output = [1, 2]
+
+[[testcases]]
+input = { nums = [1], k = 1 }
+output = [1]
+
+[[testcases]]
+input = { nums = [4, 4, 4, 6, 6, 6, 6, 7, 7, 8], k = 3 }
+output = [6, 4, 7]
+
+[[testcases]]
+input = { nums = [4, 1, -1, 2, -1, 2, 3], k = 2 }
+output = [-1, 2]

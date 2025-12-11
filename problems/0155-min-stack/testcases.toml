@@ -1,0 +1,9 @@
+version = 0.1
+
+# Special kind of format
+# The problems tests implementations rather than functions result
+[format]
+special = true
+input = {}
+output = {}
+settings = { in = {}, out = {} }
