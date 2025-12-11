@@ -1,8 +1,8 @@
 id,slug,name,difficulty,tags,rust,python,cpp,java
 1,two-sum,Two Sum,Easy,Array;Hash Table,y,n,y,y
-20,valid-parentheses,Valid Parentheses,Easy,String;Stack,y,n,y,n
+20,valid-parentheses,Valid Parentheses,Easy,String;Stack,y,y,y,y
 49,group-anagrams,Group Anagrams,Medium,Array;Hash Table;String;Sorting,y,n,y,n
 155,min-stack,Min Stack,Medium,Stack;Design,y,n,y,n
 217,contains-duplicate,Contains Duplicate,Easy,Array;Hash Table;Sorting,y,n,y,n
 242,valid-anagram,Valid Anagram,Easy,Hash Table;String;Sorting,y,y,y,n
-347,top-k-frequent-elements,Top K Frequent Elements,Medium,Array;Hash Table;Divide and Conquer;Sorting;Heap (Priority Queue);Bucket Sort;Counting;Quickselect,y,n,y,n
+347,top-k-frequent-elements,Top K Frequent Elements,Medium,Array;Hash Table;Divide and Conquer;Sorting;Heap (Priority Queue);Bucket Sort;Counting;Quickselect,y,y,y,y

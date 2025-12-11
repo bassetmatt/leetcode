@@ -22,7 +22,6 @@ class TestCase:
 
 
 def test_sol() -> None:
-    # Ensures that if there are multiple implementations they are all tested
     sol = Solution()
     cases = [
         TestCase(s="()", expected=True),

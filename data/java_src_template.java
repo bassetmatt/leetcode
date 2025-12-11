@@ -13,6 +13,7 @@ class TestCase {
     int expected;
 }
 
+@SuppressWarnings("unused")
 class SolutionTest {
     @Test
     void testBwa() {
