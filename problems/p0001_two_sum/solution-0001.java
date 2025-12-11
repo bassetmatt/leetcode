@@ -32,14 +32,8 @@ class TestCase {
     }
 }
 
+@SuppressWarnings("unused")
 class SolutionTest {
-    // You can run this main method to execute tests manually
-    public static void main(String[] args) {
-        SolutionTest test = new SolutionTest();
-        test.testContainsDuplicate();
-        System.out.println("All tests passed!");
-    }
-
     @Test
     void testContainsDuplicate() {
         Solution solution = new Solution();

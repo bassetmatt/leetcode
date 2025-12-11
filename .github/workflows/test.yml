@@ -41,6 +41,7 @@ jobs:
       - name: Set up Java
         run: |
           pacman -S --noconfirm jdk21-openjdk maven
+          mvn clean install
 
       - name: Build Rust
         run: |
@@ -68,3 +69,7 @@ jobs:
           source ~/.bashrc
           eval $(pdm venv activate)
           pytest
+
+      - name: Test Java
+        run: |
+          mvn test

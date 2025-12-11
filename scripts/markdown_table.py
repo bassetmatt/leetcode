@@ -5,14 +5,19 @@ import polars as pl
 from scripts._paths import CSV_FILE, README_FILE
 from scripts.lib import format_logger
 
-EMOJIS = {
-    "Easy": "🟢",
-    "Medium": "🟠",
-    "Hard": "🔴",
+LANGUAGE_EMOJIS = {
     "Python": "🐍",
     "C++": "💻",
     "Rust": "🦀",
+    "Java": "☕",
 }
+
+DIFFICULTY_EMOJIS = {
+    "Easy": "🟢",
+    "Medium": "🟠",
+    "Hard": "🔴",
+}
+
 TAGS_EMOJIS = {
     "Array": "🍡",
     "Hash Table": "🔑🗄️",
@@ -28,7 +33,7 @@ TAGS_EMOJIS = {
 }
 
 
-def insert_md_table(content: str) -> None:
+def replace_md_table(content: str) -> None:
     with README_FILE.open("r") as f:
         lines = f.readlines()
     begin_idx, end_idx = -1, -1
@@ -41,6 +46,8 @@ def insert_md_table(content: str) -> None:
             break
     if begin_idx == -1 or end_idx == -1:
         raise ValueError("Could not find the markdown table location in README.md")
+    elif begin_idx >= end_idx:
+        raise ValueError("Invalid markdown table location in README.md")
 
     lines = lines[:begin_idx] + ["\n" + content] + lines[end_idx:]
 
@@ -53,7 +60,7 @@ def generate_markdown_table(csv_path: Path = CSV_FILE) -> None:
 
     df = pl.read_csv(csv_path)
     table = ""
-    head_names = ["ID", "Name", "Difficulty", "Tags", "Rust", "C++", "Python"]
+    head_names = ["ID", "Name", "Difficulty", "Tags", "Rust", "C++", "Python", "Java"]
     HEAD = "| " + " | ".join(head_names) + " |\n"
     head_lines = ["-" * len(name) for name in head_names]
     SEPARATOR = "|-" + "-|-".join(head_lines) + "-|\n"
@@ -66,7 +73,7 @@ def generate_markdown_table(csv_path: Path = CSV_FILE) -> None:
         row_text += f"| {name_link} "
 
         diff = row["difficulty"]
-        diff_emoji = EMOJIS.get(diff, diff)
+        diff_emoji = DIFFICULTY_EMOJIS.get(diff, diff)
         row_text += f"| {diff_emoji} {diff}"
 
         tag_text = []
@@ -81,17 +88,21 @@ def generate_markdown_table(csv_path: Path = CSV_FILE) -> None:
 
         row_text += "| "
         if row["rust"] == "y":
-            row_text += "🦀 "
+            row_text += LANGUAGE_EMOJIS["Rust"]
         row_text += "| "
         if row["cpp"] == "y":
-            row_text += "💻 "
+            row_text += LANGUAGE_EMOJIS["C++"]
         row_text += "| "
         if row["python"] == "y":
-            row_text += "🐍 "
+            row_text += LANGUAGE_EMOJIS["Python"]
+        row_text += "| "
+        if row["java"] == "y":
+            row_text += LANGUAGE_EMOJIS["Java"]
         row_text += "|\n"
         table += row_text
     table += "\n"
-    insert_md_table(table)
+    replace_md_table(table)
+
     for tag in no_emojis_tags:
         logger.warning(f"Missing emoji for tag '{tag}'")
 

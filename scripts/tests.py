@@ -1,4 +1,5 @@
 from pathlib import Path
+import re
 import subprocess
 
 from loguru import logger
@@ -23,13 +24,15 @@ def rust_tests() -> None:
 def get_pb_id_and_slug(problem_dir: Path) -> tuple[str, str]:
     """Extracts the problem ID and slug from the problem directory name."""
     dir_name = problem_dir.name
-    id, slug = dir_name.split("-", 1)
-    id = id.lstrip("0")  # Remove leading zeros
-    return id, slug
+    groups = re.match(r"p(?P<id>\d{4})_(?P<slug_und>.+)", dir_name)
+    if not groups:
+        raise ValueError(f"Invalid problem directory name: {dir_name}")
+    id = groups["id"]
+    slug = groups["slug_und"].replace("_", "-")
+    return id.lstrip("0"), slug
 
 
 def cpp_tests(build: bool = False, logger_init: bool = True) -> None:
-    exit(1)
     if logger_init:
         format_logger(log_file=Path("logs") / "tests.log")
     if build:
@@ -37,14 +40,18 @@ def cpp_tests(build: bool = False, logger_init: bool = True) -> None:
         logger.info("Building C++ tests...")
         subprocess.run(["cmake", "-S", ".", "-B", "build"], check=True)
         subprocess.run(["cmake", "--build", "build"], check=True)
+
     # Run the C++ tests
     logger.info("Running C++ tests...")
-    for problem_dir in Path("build/problems").iterdir():
+    pb_dirs = sorted(Path("build/problems").iterdir(), key=lambda d: d.name)
+
+    for problem_dir in pb_dirs:
         pb_id, pb_slug = get_pb_id_and_slug(problem_dir)
         executable = problem_dir / f"{pb_slug}"
-        path = f"./{executable.absolute().relative_to(Path.cwd())}"
+        # Ensures the path is relative to the current working directory
+        path = executable.absolute().relative_to(Path.cwd())
         logger.info(f"Running tests for problem {pb_id}-{pb_slug}...")
-        subprocess.run([path], check=True)
+        subprocess.run([f"./{path}"], check=True)
     logger.success("All C++ tests passed successfully.")
 
 
@@ -59,6 +66,19 @@ def python_tests() -> None:
         logger.info("Rust tests passed successfully.")
 
 
+def java_tests() -> None:
+    result = subprocess.run(
+        ["mvn", "test"], check=True, text=True, stderr=subprocess.PIPE
+    )
+
+    if result.returncode != 0:
+        logger.error("Java tests failed.")
+        logger.error("\n" + result.stderr)
+        raise RuntimeError("Java tests failed.")
+    else:
+        logger.info("Java tests passed successfully.")
+
+
 def run_tests() -> None:
     format_logger(log_file=Path("logs") / "tests.log")
     logger.info("Running the tests...")
@@ -71,5 +91,8 @@ def run_tests() -> None:
 
     logger.info("Running Python tests...")
     python_tests()
+
+    logger.info("Running Java tests...")
+    java_tests()
 
     logger.success("All tests completed successfully.")

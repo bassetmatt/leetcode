@@ -1,16 +1,22 @@
-from functools import cached_property
 import shutil
 import sys
 from datetime import datetime
+from functools import cached_property
 from pathlib import Path
 from typing import Any, TextIO
 
 import loguru
 import polars as pl
-from loguru import logger
 import toml
+from loguru import logger
 
-from scripts._paths import CSV_FILE, DEF_CPP_FILE, DEF_PY_FILE, DEF_RUST_FILE
+from scripts._paths import (
+    CSV_FILE,
+    DEF_CPP_FILE,
+    DEF_JAVA_FILE,
+    DEF_PY_FILE,
+    DEF_RUST_FILE,
+)
 
 
 def rotation_fn(_msg: loguru.Message, file_opened: TextIO) -> bool:
@@ -76,7 +82,7 @@ class Problem:
         content: str = "",
     ) -> None:
         self.notes: str = ""
-        self.languages: list[str] = ["rust", "cpp", "python"]
+        self.languages: list[str] = ["rust", "cpp", "python", "java"]
 
         self.id = int(question_id)
         self.slug = slug
@@ -85,6 +91,14 @@ class Problem:
         self.tags = tags
 
         self.content = content
+
+    @cached_property
+    def slug_underscore(self) -> str:
+        return self.slug.replace("-", "_")
+
+    @cached_property
+    def id4(self) -> str:
+        return f"{self.id:04d}"
 
     @staticmethod
     def from_post(slug: str, data: dict[str, Any]) -> Problem:
@@ -118,13 +132,16 @@ class Problem:
             "rust": "n",
             "python": "n",
             "cpp": "n",
+            "java": "n",
         }
 
     @cached_property
     def dir(self) -> Path:
-        return Path(f"problems/{self.id:04d}-{self.slug}")
+        # Using underscores and starting with p so java won't complain
+        return Path(f"problems/p{self.id4}_{self.slug_underscore}")
 
     def update_csv(self) -> None:
+        logger.info("Updating problems database...")
         if CSV_FILE.exists():
             data = pl.read_csv(CSV_FILE)
         else:
@@ -154,6 +171,8 @@ class Problem:
             description_file (str, optional): File with description (must be gitignore). Defaults to "PROBLEM.md".
             link_file (str, optional): File with only the link (can be hidden in editor). Defaults to "README.md".
         """
+        logger.info("Generating README files...")
+
         readme = f"# {self.id}. {self.name}\n\n"
         readme += f"**Difficulty:** {self.difficulty}<br>\n"
         readme += f"**Tags:** {', '.join(self.tags)}\n\n"
@@ -166,9 +185,9 @@ class Problem:
         readme += f"[{self.name}]({url})\n"
         readme_link_only += f"[{self.name}]({url})\n"
 
-        with open(self.dir / f"{description_file}", "w") as f:
+        with open(self.dir / description_file, "w") as f:
             f.write(readme)
-        with open(self.dir / f"{link_file}", "w") as f:
+        with open(self.dir / link_file, "w") as f:
             f.write(readme_link_only)
 
     def init_files(self) -> None:
@@ -184,13 +203,18 @@ class Problem:
             elif lang == "python":
                 logger.debug(f"[{i + 1}/{N}] Initializing Python files")
                 self.init_python()
+            elif lang == "java":
+                logger.debug(f"[{i + 1}/{N}] Initializing Java files")
+                self.init_java()
             else:
                 logger.warning(
                     f"Language {lang} not supported, skipping initialization"
                 )
+        self.init_testcases_file()
 
     def init_rust(self) -> None:
-        shutil.copy(DEF_RUST_FILE, self.dir / "solution.rs")
+        filename = f"solution-{self.id4}.rs"
+        shutil.copy(DEF_RUST_FILE, self.dir / filename)
 
         cargo_struct = {
             "package": {
@@ -198,16 +222,15 @@ class Problem:
                 "version": "0.1.0",
                 "edition": "2024",
             },
-            "lib": {
-                "name": self.slug.replace("-", "_"),
-                "path": "solution.rs",
-            },
+            "lib": {"name": self.slug.replace("-", "_"), "path": filename},
         }
+
         with open(self.dir / "Cargo.toml", "w") as f:
             toml.dump(cargo_struct, f)
 
     def init_cpp(self) -> None:
-        shutil.copy(DEF_CPP_FILE, self.dir / "solution.cpp")
+        filename = f"solution-{self.id4}.cpp"
+        shutil.copy(DEF_CPP_FILE, self.dir / filename)
         target = self.slug
         compiler_flags = "-Wall -Wextra -Wpedantic"
 
@@ -216,7 +239,7 @@ class Problem:
         cmake_content += f"project({target})\n\n"
         cmake_content += "set(CMAKE_CXX_STANDARD 23)\n\n"
 
-        cmake_content += f"add_executable({target} solution.cpp)\n"
+        cmake_content += f"add_executable({target} {filename})\n"
         cmake_content += f"target_compile_options({target} PRIVATE {compiler_flags})\n"
 
         cmake_content += "find_package(fmt)\n"
@@ -226,14 +249,39 @@ class Problem:
             f.write(cmake_content)
 
     def init_python(self) -> None:
-        shutil.copy(DEF_PY_FILE, self.dir / f"solution-{self.id:04d}.py")
+        shutil.copy(DEF_PY_FILE, self.dir / f"solution-{self.id4}.py")
+
         init_content = f'"""{self.name} Problem\n'
         init_content += f"https://leetcode.com/problems/{self.slug}/\n"
         init_content += '"""\n\n'
         with open(self.dir / "__init__.py", "w") as f:
             f.write(init_content)
 
+    def init_java(self) -> None:
+        filename = f"solution-{self.id4}.java"
+        shutil.copy(DEF_JAVA_FILE, self.dir / filename)
+
+        package_line = f"p{self.id4}_{self.slug_underscore};\n\n"
+        with open(self.dir / filename, "rw") as f:
+            content = f.read()
+            content = package_line + content
+            f.write(content)
+
+    def init_testcases_file(self) -> None:
+        file_struct = {
+            "version": "0.1",
+            "format": {
+                "input": {},
+                "output": "",
+                "settings": {"in": {}, "out": {}},
+            },
+        }
+        self.testcases_file = self.dir / "testcases.toml"
+        with open(self.testcases_file, "w") as f:
+            toml.dump(file_struct, f)
+
     def generate_desktop_file(self) -> None:
+        logger.info("Generating Desktop Entry...")
         diff = self.difficulty.lower()
         path = Path(".").absolute() / f"data/code-{diff}.svg"
 

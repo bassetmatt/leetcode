@@ -1,5 +1,5 @@
-from loguru import logger
 import requests
+from loguru import logger
 
 from scripts.lib import Problem
 
