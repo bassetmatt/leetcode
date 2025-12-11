@@ -5,4 +5,4 @@ edition = "2024"
 
 [lib]
 name = "valid_parentheses"
-path = "solution.rs"
+path = "solution-0020.rs"

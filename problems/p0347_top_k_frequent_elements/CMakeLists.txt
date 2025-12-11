@@ -3,7 +3,7 @@ project(top-k-frequent-elements)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(top-k-frequent-elements solution.cpp)
+add_executable(top-k-frequent-elements solution-0347.cpp)
 target_compile_options(top-k-frequent-elements PRIVATE -Wall -Wextra -Wpedantic)
 
 find_package(fmt)

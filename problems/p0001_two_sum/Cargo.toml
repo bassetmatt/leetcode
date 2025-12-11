@@ -5,4 +5,4 @@ edition = "2024"
 
 [lib]
 name = "two_sum"
-path = "solution.rs"
+path = "solution-0001.rs"

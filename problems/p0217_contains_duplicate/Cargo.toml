@@ -5,4 +5,4 @@ edition = "2024"
 
 [lib]
 name = "contains_duplicate"
-path = "solution.rs"
+path = "solution-0217.rs"

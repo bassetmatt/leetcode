@@ -3,7 +3,7 @@ project(contains-duplicate)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(contains-duplicate solution.cpp)
+add_executable(contains-duplicate solution-0217.cpp)
 target_compile_options(contains-duplicate PRIVATE -Wall -Wextra -Wpedantic)
 
 find_package(fmt)

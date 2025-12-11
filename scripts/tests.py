@@ -29,6 +29,7 @@ def get_pb_id_and_slug(problem_dir: Path) -> tuple[str, str]:
 
 
 def cpp_tests(build: bool = False, logger_init: bool = True) -> None:
+    exit(1)
     if logger_init:
         format_logger(log_file=Path("logs") / "tests.log")
     if build:

@@ -5,4 +5,4 @@ edition = "2024"
 
 [lib]
 name = "group_anagrams"
-path = "solution.rs"
+path = "solution-0049.rs"

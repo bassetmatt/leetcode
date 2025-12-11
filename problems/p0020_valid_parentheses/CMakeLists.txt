@@ -3,7 +3,7 @@ project(valid-parentheses)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(valid-parentheses solution.cpp)
+add_executable(valid-parentheses solution-0020.cpp)
 target_compile_options(valid-parentheses PRIVATE -Wall -Wextra -Wpedantic)
 
 find_package(fmt)
